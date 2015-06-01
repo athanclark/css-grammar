@@ -1,11 +1,11 @@
-Name:                   css-selectors
+Name:                   css-grammar
 Version:                0.0.0
 Author:                 Athan Clark <athan.clark@gmail.com>
 Maintainer:             Athan Clark <athan.clark@gmail.com>
 License:                BSD3
 License-File:           LICENSE
--- Synopsis:               
--- Description:            
+Synopsis:               Grammar for Css3
+-- Description:
 Cabal-Version:          >= 1.10
 Build-Type:             Simple
 
@@ -13,9 +13,8 @@ Library
   Default-Language:     Haskell2010
   HS-Source-Dirs:       src
   GHC-Options:          -Wall
-  Exposed-Modules:      Data.Css.Selector
-  Other-Modules:        Data.Css.Selector.Internal
-  Build-Depends:        base >= 4 && < 5
+  Exposed-Modules:      Language.Css.Selectors
+  Build-Depends:        base >= 4.6 && < 5
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
@@ -31,4 +30,4 @@ Test-Suite spec
 
 Source-Repository head
   Type:                 git
---  Location:             
+  Location:             git://github.com/athanclark/css-grammar.git
