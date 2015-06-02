@@ -59,10 +59,11 @@ type CssNode  = String
 
 -- | A chunk of a selector query
 data CssSimpleSelector = CssSimpleSelector
-  { nodeSel    :: Maybe CssNode
-  , idSel      :: Maybe CssId
-  , classesSel :: [CssClass]
-  , atrrsSel   :: [CssAttribute]
+  { namespaceSel :: Maybe String
+  , nodeSel      :: Maybe CssNode
+  , idSel        :: Maybe CssId
+  , classesSel   :: [CssClass]
+  , atrrsSel     :: [CssAttribute]
   } deriving (Show, Eq)
 
 data CssSelector = CssSelector

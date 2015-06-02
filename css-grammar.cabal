@@ -14,6 +14,8 @@ Library
   HS-Source-Dirs:       src
   GHC-Options:          -Wall
   Exposed-Modules:      Language.Css.Selectors
+                        Language.Css.Colors
+                        Language.Css.Namespaces
   Build-Depends:        base >= 4.6 && < 5
 
 Test-Suite spec
