@@ -13,8 +13,10 @@ Library
   Default-Language:     Haskell2010
   HS-Source-Dirs:       src
   GHC-Options:          -Wall
-  Exposed-Modules:      Language.Css.Colors
+  Exposed-Modules:      Language.Css.AtRules
+                        Language.Css.Colors
                         Language.Css.Decl
+                        Language.Css.Media
                         Language.Css.Namespaces
                         Language.Css.Properties
                         Language.Css.Selectors
