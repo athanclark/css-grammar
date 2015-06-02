@@ -23,3 +23,13 @@ data CssResolution =
   | CssDpcm Double
   | CssDppx Double
   deriving (Show, Eq)
+
+data CssDeviceOrientation =
+    CssLandscape
+  | CssPortrait
+  deriving (Show, Eq)
+
+data CssScan =
+    CssInterlace
+  | CssProgressive
+  deriving (Show, Eq)

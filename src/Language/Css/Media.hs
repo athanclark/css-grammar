@@ -23,13 +23,8 @@ data CssMediaQuery =
     CssMediaQueryOnly CssMediaType [CssMediaFeature]
   | CssMediaQueryNot  CssMediaType [CssMediaFeature]
   | CssMediaQueryExpr (NonEmpty CssMediaFeature)
-
-data CssDeviceOrientation =
-    CssLandscape
-  | CssPortrait
   deriving (Show, Eq)
 
--- | @min-width@, @max-height@, @color@, etc.
 data CssMediaFeature =
     CssMediaWidth                CssLength
   | CssMediaMinWidth             CssLength
@@ -64,8 +59,4 @@ data CssMediaFeature =
   | CssMediaMaxResolution        CssResolution
   | CssMediaScan                 CssScan
   | CssMediaGrid                 Integer
-
-data CssScan =
-    CssInterlace
-  | CssProgressive
   deriving (Show, Eq)
