@@ -74,7 +74,9 @@ data CssSelector = CssSelector
   } deriving (Show, Eq)
 
 data CssCombinator =
-    CssDescendant CssSelector CssSelector -- ^ @E F@
-  | CssChild      CssSelector CssSelector -- ^ @E > F@
-  | CssAdjacent   CssSelector CssSelector -- ^ @E + F@
-  | CssSibling    CssSelector CssSelector -- ^ @E ~ F@
+    CssCombSelector CssSelector
+  | CssDescendant   CssCombinator CssSelector -- ^ @E F@
+  | CssChild        CssCombinator CssSelector -- ^ @E > F@
+  | CssAdjacent     CssCombinator CssSelector -- ^ @E + F@
+  | CssSibling      CssCombinator CssSelector -- ^ @E ~ F@
+  deriving (Show, Eq)
