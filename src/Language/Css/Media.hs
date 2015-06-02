@@ -1,5 +1,6 @@
 module Language.Css.Media where
 
+import Language.Css.Values
 import Data.List.NonEmpty
 
 
@@ -19,45 +20,52 @@ data CssMediaType =
 type CssMediaQueryList = NonEmpty CssMediaQuery
 
 data CssMediaQuery =
-    CssMediaQueryOnly CssMediaType [CssMediaExpression]
-  | CssMediaQueryNot  CssMediaType [CssMediaExpression]
-  | CssMediaQueryExpr (NonEmpty CssMediaExpression)
+    CssMediaQueryOnly CssMediaType [CssMediaFeature]
+  | CssMediaQueryNot  CssMediaType [CssMediaFeature]
+  | CssMediaQueryExpr (NonEmpty CssMediaFeature)
 
-type CssMediaExpression = (CssMediaFeature, Maybe CssMediaValue)
+data CssDeviceOrientation =
+    CssLandscape
+  | CssPortrait
+  deriving (Show, Eq)
 
 -- | @min-width@, @max-height@, @color@, etc.
 data CssMediaFeature =
-    CssMediaWidth
-  | CssMediaMinWidth
-  | CssMediaMaxWidth
-  | CssMediaHeight
-  | CssMediaMinHeight
-  | CssMediaMaxHeight
-  | CssMediaDeviceWidth
-  | CssMediaMinDeviceWidth
-  | CssMediaMaxDeviceWidth
-  | CssMediaDeviceHeight
-  | CssMediaMinDeviceHeight
-  | CssMediaMaxDeviceHeight
-  | CssMediaAspectRatio
-  | CssMediaMinAspectRatio
-  | CssMediaMaxAspectRatio
-  | CssMediaDeviceAspectRatio
-  | CssMediaMinDeviceAspectRatio
-  | CssMediaMaxDeviceAspectRatio
-  | CssMediaColor
-  | CssMediaMinColor
-  | CssMediaMaxColor
-  | CssMediaColorIndex
-  | CssMediaMinColorIndex
-  | CssMediaMaxColorIndex
-  | CssMediaMonochrome
-  | CssMediaMinMonochrome
-  | CssMediaMaxMonochrome
-  | CssMediaResolution
-  | CssMediaMinResolution
-  | CssMediaMaxResolution
-  | CssMediaScan
-  | CssMediaGrid
+    CssMediaWidth                CssLength
+  | CssMediaMinWidth             CssLength
+  | CssMediaMaxWidth             CssLength
+  | CssMediaHeight               CssLength
+  | CssMediaMinHeight            CssLength
+  | CssMediaMaxHeight            CssLength
+  | CssMediaDeviceWidth          CssLength
+  | CssMediaMinDeviceWidth       CssLength
+  | CssMediaMaxDeviceWidth       CssLength
+  | CssMediaDeviceHeight         CssLength
+  | CssMediaMinDeviceHeight      CssLength
+  | CssMediaMaxDeviceHeight      CssLength
+  | CssMediaAspectRatio          Double
+  | CssMediaOrientation          CssDeviceOrientation
+  | CssMediaMinAspectRatio       Double
+  | CssMediaMaxAspectRatio       Double
+  | CssMediaDeviceAspectRatio    Double
+  | CssMediaMinDeviceAspectRatio Double
+  | CssMediaMaxDeviceAspectRatio Double
+  | CssMediaColor                Integer
+  | CssMediaMinColor             Integer
+  | CssMediaMaxColor             Integer
+  | CssMediaColorIndex           Integer
+  | CssMediaMinColorIndex        Integer
+  | CssMediaMaxColorIndex        Integer
+  | CssMediaMonochrome           Integer
+  | CssMediaMinMonochrome        Integer
+  | CssMediaMaxMonochrome        Integer
+  | CssMediaResolution           CssResolution
+  | CssMediaMinResolution        CssResolution
+  | CssMediaMaxResolution        CssResolution
+  | CssMediaScan                 CssScan
+  | CssMediaGrid                 Integer
 
-type CssMediaValue = String
+data CssScan =
+    CssInterlace
+  | CssProgressive
+  deriving (Show, Eq)
