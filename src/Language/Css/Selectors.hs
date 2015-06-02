@@ -1,5 +1,7 @@
 module Language.Css.Selectors where
 
+import Language.Css.Namespaces
+
 
 data CssCount =
     CssAdd Integer Integer -- ^ @2n+1@
@@ -59,7 +61,7 @@ type CssNode  = String
 
 -- | A chunk of a selector query
 data CssSimpleSelector = CssSimpleSelector
-  { namespaceSel :: Maybe String
+  { namespaceSel :: Maybe CssQualifierName
   , nodeSel      :: Maybe CssNode
   , idSel        :: Maybe CssId
   , classesSel   :: [CssClass]
