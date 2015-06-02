@@ -1,40 +1,46 @@
 module Language.Css.Values
   ( module X
-  , CssValue (..)
+  , CssBackgroundValue (..)
   , CssBGAttachment (..)
+  , CssBGPosition (..)
   , CssBGPositionFloatX (..)
   , CssBGPositionFloatY (..)
   , CssBGPositionValue (..)
-  , CssBGPosition (..)
-  , CssRepeat (..)
-  , CssCollapse (..)
-  , CssBackgroundValue (..)
-  , CssSide (..)
+  , CssBorder (..)
+  , CssBorderStyle (..)
+  , CssBorderWidth (..)
+  , CssBreak (..)
   , CssClear (..)
+  , CssCollapse (..)
+  , CssContent (..)
   , CssCursor (..)
   , CssDirection (..)
   , CssDisplay (..)
   , CssEmptyCells (..)
   , CssFloat (..)
+  , CssFont (..)
   , CssFontStyle (..)
   , CssFontVariant (..)
   , CssFontWeight (..)
+  , CssGenericFontFamily (..)
+  , CssIdentifier
+  , CssListStyle (..)
   , CssListStylePosition (..)
   , CssListStyleType (..)
-  , CssListStyle (..)
+  , CssOutline (..)
   , CssOutlineColor (..)
   , CssOverflow (..)
-  , CssBreak (..)
   , CssPageBreak (..)
-  , CssBreak (..)
-  , CssPageBreak (..)
-  , CssBreak (..)
   , CssPosition (..)
+  , CssRepeat (..)
+  , CssShape (..)
+  , CssSide (..)
   , CssTableLayout (..)
   , CssTextAlign (..)
   , CssTextDecoration (..)
   , CssTextTransform (..)
   , CssUnicodeBidi (..)
+  , CssValue (..)
   , CssVerticalAlign (..)
   , CssVisibility (..)
   , CssWhiteSpace (..)
@@ -44,6 +50,9 @@ import Language.Css.Values.Lengths as X
 import Language.Css.Values.Other   as X
 import Language.Css.Values.Urls    as X
 import Language.Css.Colors
+
+import Data.List.NonEmpty
+
 
 data CssValue a =
     CssValue a
@@ -100,6 +109,57 @@ data CssCollapse =
     CssCollapse
   | CssSeparate
   deriving (Show, Eq)
+
+data CssBorderStyle =
+    CssBorderHidden
+  | CssBorderDotted
+  | CssBorderDashed
+  | CssBorderSolid
+  | CssBorderDouble
+  | CssBorderGroove
+  | CssBorderRidge
+  | CssBorderInset
+  | CssBorderOutset
+  deriving (Show, Eq)
+
+data CssBorderWidth =
+    CssBorderThin
+  | CssBorderMedium
+  | CssBorderThick
+  deriving (Show, Eq)
+
+data CssBorder = CssBorder
+  (Maybe CssBorderStyle)
+  (Maybe CssBorderWidth)
+  (Maybe CssColor)
+  deriving (Show, Eq)
+
+data CssShape = CssShape
+  { shapeLeft   :: Maybe CssLength
+  , shapeRight  :: Maybe CssLength
+  , shapeTop    :: Maybe CssLength
+  , shapeBottom :: Maybe CssLength
+  } deriving (Show, Eq)
+
+data CssContentChunk =
+    CssContentString String
+  | CssContentUrl CssUrl
+  | CssContentCounter CssCounter
+  | CssContentAttrIdentifier CssIdentifier
+  | CssContentOpenQuote
+  | CssContentCloseQuote
+  | CssContentNoOpenQuote
+  | CssContentNoCloseQuote
+  deriving (Show, Eq)
+
+data CssContent =
+    CssContentNormal
+  | CssContent [CssContentChunk]
+  deriving (Show, Eq)
+
+type CssCounter = String
+
+type CssIdentifier = String
 
 data CssSide = CssSideLeft | CssSideRight
   deriving (Show, Eq)
@@ -173,6 +233,33 @@ data CssFontWeight =
   | CssFontWeight900
   deriving (Show, Eq)
 
+data CssGenericFontFamily =
+    CssFontSerif
+  | CssFontSansSerif
+  | CssFontCursive
+  | CssFontFantasy
+  | CssFontMonospace
+  deriving (Show, Eq)
+
+data CssFontSpec = CssFontSpec
+  { fontStyle   :: Maybe CssFontStyle
+  , fontVariant :: Maybe CssFontVariant
+  , fontWeight  :: Maybe CssFontWeight
+  , fontSize    :: CssLength
+  , lineHeight  :: Maybe CssLength
+  , fontFamily  :: NonEmpty CssGenericFontFamily
+  } deriving (Show, Eq)
+
+data CssFont =
+    CssFont CssFontSpec
+  | CssFontCaption
+  | CssFontIcon
+  | CssFontMenu
+  | CssFontMessageBox
+  | CssSmallCaption
+  | CssStatusBar
+  deriving (Show, Eq)
+
 data CssListStylePosition =
     CssListStyleInside
   | CssListStyleOutside
@@ -202,6 +289,12 @@ data CssListStyle = CssListStyle
   deriving (Show, Eq)
 
 data CssOutlineColor = CssInvert
+  deriving (Show, Eq)
+
+data CssOutline = CssOutline
+  (Maybe (Either CssOutlineColor CssColor))
+  (Maybe CssBorderStyle)
+  (Maybe CssBorderWidth)
   deriving (Show, Eq)
 
 data CssOverflow =

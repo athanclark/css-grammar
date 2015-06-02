@@ -23,6 +23,7 @@ Library
                         Language.Css.Values.Urls
   Build-Depends:        base >= 4.6 && < 5
                       , uri
+                      , semigroups
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
