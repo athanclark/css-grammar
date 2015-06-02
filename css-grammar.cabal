@@ -13,10 +13,16 @@ Library
   Default-Language:     Haskell2010
   HS-Source-Dirs:       src
   GHC-Options:          -Wall
-  Exposed-Modules:      Language.Css.Selectors
                         Language.Css.Colors
                         Language.Css.Namespaces
+                        Language.Css.Properties
+  Exposed-Modules:      Language.Css.Selectors
+                        Language.Css.Values
+                        Language.Css.Values.Lengths
+                        Language.Css.Values.Other
+                        Language.Css.Values.Urls
   Build-Depends:        base >= 4.6 && < 5
+                      , uri
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
