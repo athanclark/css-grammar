@@ -154,7 +154,7 @@ data CssContentChunk =
 
 data CssContent =
     CssContentNormal
-  | CssContent [CssContentChunk]
+  | CssContent (NonEmpty CssContentChunk)
   deriving (Show, Eq)
 
 type CssCounter = String
